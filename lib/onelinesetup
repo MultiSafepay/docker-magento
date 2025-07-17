@@ -1,13 +1,9 @@
 #!/usr/bin/env bash
 set -o errexit
 
-DOMAIN=${1:-magento.test}
-EDITION=${2}
-VERSION=${3}
+DOMAIN=${1:-magento237.multisfepay.io}
 
-curl -s https://raw.githubusercontent.com/markshust/docker-magento/master/lib/template | bash
+curl -s https://raw.githubusercontent.com/multisafepay/docker-magento/master/lib/template | bash
 
-# &&'s are used below otherwise onelinesetup script fails/errors after bin/download
-# ${:+""} format only includes parameters if they were explicitly set
-bin/download ${EDITION:+"$EDITION"} ${VERSION:+"$VERSION"} \
+bin/download community 2.3.7 \
   && bin/setup "${DOMAIN}"
